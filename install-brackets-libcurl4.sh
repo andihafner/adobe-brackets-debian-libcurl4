@@ -2,11 +2,11 @@
 : "
 brackets-libcurl4 v 1.0
 
-This script installs the latest Linux-Version of Adobe Brackets
-on newer Debian based Linux Distros
+This script installs the latest Linux-Version of Adobe Brackets on
+newer Debian based Linux Distros
 Adobes support for Brackets ends on September 2021
 
-Copyright andihafner.com 2021, Apache License, Version 2.0
+Copyright andihafner.com 2021, CC-BY, Version 4.0
 after instructions from
 https://askubuntu.com/questions/1238601/brackets-no-extensions-available
 "
