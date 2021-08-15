@@ -47,8 +47,12 @@ create_temp_dir() {
 
 get_os_arch() {
 
-  echo "The answer was yes"
-
+if [ $(uname --hardware-platform | grep --count x86_64) == "1" ]
+  then
+    os_arch="64"
+  else
+    os_arch="32"
+fi
 }
 
 #-------------------------------------------------------------------------------
@@ -62,6 +66,7 @@ main() {
     else
       create_temp_dir
       get_os_arch
+      echo "os_arch  = $os_arch"
   fi
 }
 
