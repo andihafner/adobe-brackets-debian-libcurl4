@@ -2,7 +2,7 @@
 
 show_info() {                                                                   
 echo -e "                                                                       
-install-brackets-1.14.1-libcurl4 by kmu-net.ch / andihafner.com 2021 Version 0.1
+install-brackets-1.14.1-libcurl4 by kmu-net.ch / andihafner.com Version 20210815-1713
 This work is licensed under the Apache License Version 2.0
 
 This script installs the Linux-Version 1.14.1 of Adobe Brackets on newer Debian
@@ -31,7 +31,7 @@ original_package_url_prefix="$original_package_url_path$original_package_name_pr
 
 ask_for_continuation() {
 
-  echo -e -n "Would you like to continue? (Type [y/n] followed by ENTER: "
+  echo -e -n "Would you like to continue? Type [y/n] followed by ENTER: "
   read answer
 
 }
@@ -69,15 +69,40 @@ get_deb_package() {
 #-------------------------------------------------------------------------------
 
 modify_package() {
-#:"
+
   dpkg-deb -R ./$original_package_name extracted_package
   sed -i 's/libcurl3/libcurl4/g' extracted_package/DEBIAN/control
   modified_package_name=$original_package_name_prefix.$os_arch-bit-libcurl4.deb
   dpkg-deb -b extracted_package $modified_package_name
-#"
   rm -r extracted_package
   rm $original_package_name
 
+}
+
+#-------------------------------------------------------------------------------
+
+install_package() {
+
+  echo -e "\nThe next step will install the modified package \n"
+  ask_for_continuation
+    if [ $answer == "y" ]
+    then
+      sudo dpkg -i $original_package_name
+    fi
+}
+
+#-------------------------------------------------------------------------------
+
+cleaning_up() {
+
+  echo -e "
+  The next step will remove the modified installation package\n
+  (but it will NOT uninstall the installed Application)\n"
+  ask_for_continuation
+    if [ $answer == "y" ]
+    then
+      rm $modified_package_name
+    fi
 }
 
 #-------------------------------------------------------------------------------
@@ -93,6 +118,8 @@ main() {
       get_os_arch
       get_deb_package
       modify_package
+      install_package
+      cleaning_up
   fi
 }
 
@@ -105,4 +132,3 @@ case "$1" in
   *)                   main
 
 esac
-
