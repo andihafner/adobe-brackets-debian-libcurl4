@@ -23,6 +23,7 @@ Todo:
 #--------- Declare Constants ---------------------------------------------------
 
 temp_dir="$HOME/temp/brackets-libcurl4-install"
+brackets_deb_url_prefix="https://github.com/adobe/brackets/releases/download/release-1.14.1/Brackets.Release.1.14.1"
 
 #-------------------------------------------------------------------------------
 
@@ -37,7 +38,6 @@ ask_for_continuation() {
 
 create_temp_dir() {
 
-  echo $temp_dir
   mkdir --parents $temp_dir
   cd $temp_dir
 }
@@ -57,6 +57,14 @@ fi
 
 #-------------------------------------------------------------------------------
 
+get_deb_package() {
+
+  package_url="$brackets_deb_url_prefix.$os_arch-bit.deb"
+  wget $package_url
+}
+
+#-------------------------------------------------------------------------------
+
 main() {
 	show_info
   ask_for_continuation
@@ -66,7 +74,7 @@ main() {
     else
       create_temp_dir
       get_os_arch
-      echo "os_arch  = $os_arch"
+      get_deb_package
   fi
 }
 
