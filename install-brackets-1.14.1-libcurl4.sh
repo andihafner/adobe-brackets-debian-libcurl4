@@ -20,6 +20,10 @@ https://askubuntu.com/questions/1238601/brackets-no-extensions-available
 Todo:
 "
 
+#--------- Declare Constants ---------------------------------------------------
+
+temp_dir="$HOME/temp/brackets-libcurl4-install"
+
 #-------------------------------------------------------------------------------
 
 ask_for_continuation() {
@@ -28,18 +32,23 @@ ask_for_continuation() {
   read answer
 
 }
+
+#-------------------------------------------------------------------------------
+
+create_temp_dir() {
+
+  echo $temp_dir
+  mkdir --parents $temp_dir
+  cd $temp_dir
+}
+
+
 #-------------------------------------------------------------------------------
 
 get_os_arch() {
 
   echo "The answer was yes"
 
-}
-
-#-------------------------------------------------------------------------------
-
-convert_hms2seconds() {
-    seconds="$(echo $hms | awk -F: '{ print ($1 * 3600) + ($2 * 60) + $3 }')"
 }
 
 #-------------------------------------------------------------------------------
@@ -51,6 +60,7 @@ main() {
     then
       echo -e "\nGood Bye...\n"
     else
+      create_temp_dir
       get_os_arch
   fi
 }
