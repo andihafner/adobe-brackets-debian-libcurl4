@@ -68,6 +68,20 @@ get_deb_package() {
 
 #-------------------------------------------------------------------------------
 
+modify_package() {
+#:"
+  dpkg-deb -R ./$original_package_name extracted_package
+  sed -i 's/libcurl3/libcurl4/g' extracted_package/DEBIAN/control
+  modified_package_name=$original_package_name_prefix.$os_arch-bit-libcurl4.deb
+  dpkg-deb -b extracted_package $modified_package_name
+#"
+  rm -r extracted_package
+  rm $original_package_name
+
+}
+
+#-------------------------------------------------------------------------------
+
 main() {
 	show_info
   ask_for_continuation
@@ -78,6 +92,7 @@ main() {
       create_temp_dir
       get_os_arch
       get_deb_package
+      modify_package
   fi
 }
 
