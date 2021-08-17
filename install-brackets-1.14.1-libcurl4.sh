@@ -87,8 +87,14 @@ install_package() {
   ask_for_continuation
     if [ $answer == "y" ]
     then
-      sudo apt-get install ./$modified_package_name
+      sudo apt-get install gdebi-core
+      sudo gdebi ./$modified_package_name
     fi
+: "Why using gdebi? dpkg doesn't resolve dependencies while apt
+    selects the snap package instead of the desired own package.
+
+https://superuser.com/questions/196864/how-to-install-local-deb-packages-with-apt-get/196867  
+"
 }
 
 #-------------------------------------------------------------------------------
