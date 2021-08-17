@@ -87,7 +87,7 @@ install_package() {
   ask_for_continuation
     if [ $answer == "y" ]
     then
-      sudo dpkg -i $original_package_name
+      sudo apt-get install ./$modified_package_name
     fi
 }
 
