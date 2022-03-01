@@ -1,4 +1,4 @@
-# adobe-brackets-debian-libcurl4
+# adobe-brackets-legacy4linux
 ## Script which installs Adobe Brackets 1.14.1 on Debian based Distros with libcurl4 bindings. ##
 
 Adobes support for Brackets ends on September 2021. They recommend to switch to MS Visual Studio Code, which of course isn't a bad choice, but some People still like to work with Brackets furthermore.
