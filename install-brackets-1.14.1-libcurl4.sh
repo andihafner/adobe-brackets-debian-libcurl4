@@ -2,14 +2,20 @@
 
 show_info() {                                                                   
 echo -e "                                                                       
-install-brackets-1.14.1-libcurl4 by kmu-net.ch / andihafner.com Version 20210815-1713
+install-brackets-1.14.1-libcurl4 by kmu-net.ch / andihafner.com Version 20220301-1940
 This work is licensed under the Apache License Version 2.0
 
 This script installs the Linux-Version 1.14.1 of Adobe Brackets on newer Debian
-based Linux Distros which require the libcurl4 library instead of libcurl3.
+based Linux Distros which are based on the libcurl4 library instead of libcurl3.
+
+It further fixes the URL entries for the last known extensions repository, so the
+Extensions Manager of Brackets can be used again.
 
 It repacks the original Package as described here:
 https://askubuntu.com/questions/1238601/brackets-no-extensions-available
+
+The extensions repositorys' URLs are extracted from here:
+https://github.com/Ghst-dg/Brackets_Extension_Fix
 
 "
 }        
