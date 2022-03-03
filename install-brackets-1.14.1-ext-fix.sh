@@ -28,7 +28,8 @@ Todo:
 
 #--------- Declare Constants ---------------------------------------------------
 
-temp_dir="$HOME/temp/brackets-libcurl4-install"
+repo_name="adobe-brackets-legacy4linux"
+temp_dir="$HOME/temp/$repo_name"
 original_package_url_path="https://github.com/adobe/brackets/releases/download/release-1.14.1/"
 original_package_name_prefix="Brackets.Release.1.14.1"
 original_package_url_prefix="$original_package_url_path$original_package_name_prefix"
@@ -99,7 +100,8 @@ cleaning_up() {
   ask_for_continuation
     if [ $answer == "y" ]
     then
-      rm $modified_package_name
+      cd ..
+      rm -rf $repo_name
     fi
 }
 
