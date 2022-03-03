@@ -2,7 +2,7 @@
 
 show_info() {                                                                   
 echo -e "                                                                       
-install-brackets-1.14.1-libcurl4 by kmu-net.ch / andihafner.com Version 20220301-1940
+install-brackets-1.14.1-ext-fix.sh by kmu-net.ch / andihafner.com Version 20220301-1940
 This work is licensed under the Apache License Version 2.0
 
 This script installs the Linux-Version 1.14.1 of Adobe Brackets on newer Debian
@@ -70,7 +70,9 @@ get_deb_package() {
 
 modify_package() {
   dpkg-deb -R ./$original_package_name extracted_package
-  sed -i 's/libcurl3/libcurl4/g' extracted_package/DEBIAN/control
+  sed -i 's/libcurl3/libcurl4/' extracted_package/DEBIAN/control
+  sed -i 's/https:\/\/s3.amazonaws.com\/extend.brackets\/registry.json/http:\/\/registry.brackets.s3.amazonaws.com\/registry.json/' extracted_package/opt/brackets/www/config.json
+  sed -i 's/https:\/\/s3.amazonaws.com\/extend.brackets\/\{0\}\/\{0\}-\{1\}.zip/http:\/\/registry.brackets.s3.amazonaws.com\/\{0\}-\{1\}.zip/' extracted_package/opt/brackets/www/config.json
   modified_package_name=$original_package_name_prefix.$os_arch-bit-libcurl4.deb
   dpkg-deb -b extracted_package $modified_package_name
   rm -r extracted_package
